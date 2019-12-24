@@ -29,10 +29,12 @@ namespace Chess
             }
 
 			//file splite
-			public const char SPLITER='/';
-			public const string PREFIX="images/figures";
-			//atack and move has differents directions
-			protected bool diff;
+			public const char SPLITER='\\';
+
+            public const string PREFIX=@"..\..\images\figures";
+            
+            //atack and move has differents directions
+            protected bool diff;
 			public bool HasDifferentDirections {
 				get{ 
 					return diff;
@@ -164,7 +166,7 @@ namespace Chess
 				else 
 					scolor = "black";
 					 
-				String path = PREFIX + SPLITER 
+				string path =PREFIX + SPLITER 
 							+ scolor
 							+ '_'
 							+ name 
@@ -177,7 +179,7 @@ namespace Chess
                 catch (System.Exception)
                 {
                     img = null;
-                    System.Windows.Forms.MessageBox.Show("File " + path.ToUpper() + " not found. Please, put it to the directory of executable file.", "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("File " + path + " not found. Please, put it to the directory of executable file.", "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
 				
 			}

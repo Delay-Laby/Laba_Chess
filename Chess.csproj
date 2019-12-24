@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D25CDF2-606A-48E4-9A00-0EA66D3A8598}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Chess</RootNamespace>
+    <AssemblyName>Chess</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\CoreMatrix.cs" />
+    <Compile Include="Core\WrongPositionException.cs" />
+    <Compile Include="GUI\InfoWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\InfoWindow.Designer.cs">
+      <DependentUpon>InfoWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\GameCore.cs" />
+    <Compile Include="Core\User\Profile.cs" />
+    <Compile Include="Core\User\ProfileCollection.cs" />
+    <Compile Include="Debug\Debug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\GuiMatrix.cs" />
+    <Compile Include="Core\IGameControl.cs" />
+    <Compile Include="GUI\InviteWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\InviteWindow.Designer.cs">
+      <DependentUpon>InviteWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\CreateProfileWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\User\CreateProfileWindow.Designer.cs">
+      <DependentUpon>CreateProfileWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\ProfileWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\User\ProfileWindow.Designer.cs">
+      <DependentUpon>ProfileWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Network\NetworkServer.cs" />
+    <Compile Include="GUI\PlayWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PlayWindow.Designer.cs">
+      <DependentUpon>PlayWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\InfoWindow.resx">
+      <DependentUpon>InfoWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InviteWindow.resx">
+      <DependentUpon>InviteWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PlayWindow.resx">
+      <DependentUpon>PlayWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\User\CreateProfileWindow.resx">
+      <DependentUpon>CreateProfileWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\User\ProfileWindow.resx">
+      <DependentUpon>ProfileWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Core\Models.cs" />
+    <Compile Include="Figures\Figure.cs" />
+    <Compile Include="Figures\Queen.cs" />
+    <Compile Include="Figures\Rock.cs" />
+    <Compile Include="Figures\Pawn.cs" />
+    <Compile Include="Figures\Bishop.cs" />
+    <Compile Include="Figures\King.cs" />
+    <Compile Include="Figures\Knight.cs" />
+    <Compile Include="Network\NetworkClient.cs" />
+    <Compile Include="Network\NetworkDef.cs" />
+    <Compile Include="Network\BaseNetwork.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="images\figures\black_bishop.png" />
+    <Content Include="images\figures\black_king.png" />
+    <Content Include="images\figures\black_knight.png" />
+    <Content Include="images\figures\black_pawn.png" />
+    <Content Include="images\figures\black_queen.png" />
+    <Content Include="images\figures\BLACK_ROCK.PNG" />
+    <Content Include="images\figures\white_bishop.png" />
+    <Content Include="images\figures\white_king.png" />
+    <Content Include="images\figures\white_knight.png" />
+    <Content Include="images\figures\white_pawn.png" />
+    <Content Include="images\figures\white_queen.png" />
+    <Content Include="images\figures\white_rock.png" />
+  </ItemGroup>
+  <ItemGroup />
+</Project>

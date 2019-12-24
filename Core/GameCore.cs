@@ -257,11 +257,8 @@ namespace Chess.Core
                     {
                         if ((network.type == NetWorkType.SERVER && runColor == FigureColor.WHITE) || (network.type == NetWorkType.CLIENT && runColor == FigureColor.BLACK))
                         {
-                            FigureChoiceWindow w = new FigureChoiceWindow(playWindow.GetPosOnScreen(newPos), runColor);
-                            w.ShowDialog(playWindow);
-                            matrix.SetFigure(w.Result, newPos);
-                            playWindow.matrix.SetImage(w.Result.image, newPos);
-                            playWindow.ReDraw(true);
+                           //В процессе  реализации
+                           
                         }
                     }
                     else

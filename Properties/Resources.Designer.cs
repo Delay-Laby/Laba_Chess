@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace projectChess.Properties {
+namespace Chess.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace projectChess.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace projectChess.Properties {
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("projectChess.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Chess.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace projectChess.Properties {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BB {
+        public static System.Drawing.Bitmap black_bishop {
             get {
-                object obj = ResourceManager.GetObject("BB", resourceCulture);
+                object obj = ResourceManager.GetObject("black_bishop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap board {
+        public static System.Drawing.Bitmap black_king {
             get {
-                object obj = ResourceManager.GetObject("board", resourceCulture);
+                object obj = ResourceManager.GetObject("black_king", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap board2 {
+        public static System.Drawing.Bitmap black_knight {
             get {
-                object obj = ResourceManager.GetObject("board2", resourceCulture);
+                object obj = ResourceManager.GetObject("black_knight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BW {
+        public static System.Drawing.Bitmap black_pawn {
             get {
-                object obj = ResourceManager.GetObject("BW", resourceCulture);
+                object obj = ResourceManager.GetObject("black_pawn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BW1 {
+        public static System.Drawing.Bitmap black_queen {
             get {
-                object obj = ResourceManager.GetObject("BW1", resourceCulture);
+                object obj = ResourceManager.GetObject("black_queen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap imagenajedrez {
+        public static System.Drawing.Bitmap BLACK_ROCK {
             get {
-                object obj = ResourceManager.GetObject("imagenajedrez", resourceCulture);
+                object obj = ResourceManager.GetObject("BLACK_ROCK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap KB {
+        public static System.Drawing.Bitmap white_bishop {
             get {
-                object obj = ResourceManager.GetObject("KB", resourceCulture);
+                object obj = ResourceManager.GetObject("white_bishop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap KW {
+        public static System.Drawing.Bitmap white_king {
             get {
-                object obj = ResourceManager.GetObject("KW", resourceCulture);
+                object obj = ResourceManager.GetObject("white_king", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NB {
+        public static System.Drawing.Bitmap white_knight {
             get {
-                object obj = ResourceManager.GetObject("NB", resourceCulture);
+                object obj = ResourceManager.GetObject("white_knight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NW {
+        public static System.Drawing.Bitmap white_pawn {
             get {
-                object obj = ResourceManager.GetObject("NW", resourceCulture);
+                object obj = ResourceManager.GetObject("white_pawn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NW1 {
+        public static System.Drawing.Bitmap white_queen {
             get {
-                object obj = ResourceManager.GetObject("NW1", resourceCulture);
+                object obj = ResourceManager.GetObject("white_queen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,109 +173,9 @@ namespace projectChess.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pB {
+        public static System.Drawing.Bitmap white_rock {
             get {
-                object obj = ResourceManager.GetObject("pB", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pW {
-            get {
-                object obj = ResourceManager.GetObject("pW", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pW1 {
-            get {
-                object obj = ResourceManager.GetObject("pW1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pW2 {
-            get {
-                object obj = ResourceManager.GetObject("pW2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap QB {
-            get {
-                object obj = ResourceManager.GetObject("QB", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap QB1 {
-            get {
-                object obj = ResourceManager.GetObject("QB1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap QW {
-            get {
-                object obj = ResourceManager.GetObject("QW", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap QW1 {
-            get {
-                object obj = ResourceManager.GetObject("QW1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap QW2 {
-            get {
-                object obj = ResourceManager.GetObject("QW2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RB {
-            get {
-                object obj = ResourceManager.GetObject("RB", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RW {
-            get {
-                object obj = ResourceManager.GetObject("RW", resourceCulture);
+                object obj = ResourceManager.GetObject("white_rock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

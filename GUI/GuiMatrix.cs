@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Chess.Core;
+using Chess.Figures;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using Chess.Figures;
-using Chess.Core;
 
 namespace Chess.GUI
 {
@@ -34,9 +31,9 @@ namespace Chess.GUI
     {
         private Point oldFocused;
         private Point oldSelected;
-        private Spot [,] sMatrix;
+        private Spot[,] sMatrix;
 
-		public GuiMatrix(CoreMatrix coreMatrix)
+        public GuiMatrix(CoreMatrix coreMatrix)
         {
             oldFocused = new Point(int.MaxValue, int.MaxValue);
             oldSelected = new Point(int.MaxValue, int.MaxValue);
@@ -48,26 +45,22 @@ namespace Chess.GUI
                 {
                     if ((pos.X + pos.Y) % 2 != 0)
                     {
-                        try
-                        {
+                        if (pos.Y<= 1 || pos.Y >= 6)
+                           
                             sMatrix[pos.X, pos.Y] = new Spot(pos.X, pos.Y, Color.CadetBlue, coreMatrix.FigureAt(pos).image);
-                        }
-                        catch (System.NullReferenceException)
-                        {
+                     
+                        else
                             sMatrix[pos.X, pos.Y] = new Spot(pos.X, pos.Y, Color.CadetBlue, null);
-                        }
+                        
                     }
                     else
                     {
-                        try
-                        {
+                        if (pos.Y <= 1 || pos.Y >= 6)
                             sMatrix[pos.X, pos.Y] = new Spot(pos.X, pos.Y, Color.White, coreMatrix.FigureAt(pos).image);
-                        }
-                        catch (System.NullReferenceException)
-                        {
+                        else
                             sMatrix[pos.X, pos.Y] = new Spot(pos.X, pos.Y, Color.White, null);
-                        }
-                       
+                        
+
                     }
                 }
             }
@@ -81,8 +74,8 @@ namespace Chess.GUI
         {
             return sMatrix[pos.X, pos.Y];
         }
-        
-		public bool SetFocused(int i, int j)
+
+        public bool SetFocused(int i, int j)
         {
             if (oldFocused.X == i && oldFocused.Y == j) return false;
             if (oldFocused.X != int.MaxValue) sMatrix[oldFocused.X, oldFocused.Y].Focused = false;
@@ -92,40 +85,41 @@ namespace Chess.GUI
             return true;
         }
 
-		public bool SetHighlighted (Position pos)
-		{
-			sMatrix[pos.X, pos.Y].Highlighted = true;
-			return true;
-		}
+        public bool SetHighlighted(Position pos)
+        {
+            sMatrix[pos.X, pos.Y].Highlighted = true;
+            return true;
+        }
 
-		public bool IsHighlighted (Position pos)
-		{
-			return sMatrix[pos.X, pos.Y].Highlighted;
-		}
+        public bool IsHighlighted(Position pos)
+        {
+            return sMatrix[pos.X, pos.Y].Highlighted;
+        }
 
         public bool SetChecked(Position pos)
         {
             sMatrix[pos.X, pos.Y].Check = true;
             return true;
         }
-		public bool SetHighlighted (List<Position> positions)
-		{
-			UnsetHiglight();
+        public bool SetHighlighted(List<Position> positions)
+        {
+            UnsetHiglight();
 
-			foreach( Position pos in positions)
-			{
-				SetHighlighted(pos);
-			}
-			return true;
-		}
+            foreach (Position pos in positions)
+            {
+                SetHighlighted(pos);
+            }
+            return true;
+        }
 
-		public void UnsetHiglight ()
-		{
-			foreach (Spot spot in sMatrix) {
-				spot.Highlighted = false;
+        public void UnsetHiglight()
+        {
+            foreach (Spot spot in sMatrix)
+            {
+                spot.Highlighted = false;
                 spot.Check = false;
-			}
-		}
+            }
+        }
 
         public void ResetAllAttribures()
         {
@@ -136,7 +130,7 @@ namespace Chess.GUI
             }
         }
 
-		//Making square selected
+        //Making square selected
         public bool SetSelected(int i, int j)
         {
             UnsetHiglight();
@@ -154,18 +148,18 @@ namespace Chess.GUI
             return true;
         }
 
-		public bool SetSelected(Position pos)
+        public bool SetSelected(Position pos)
         {
-			return SetSelected(pos.X, pos.Y);
+            return SetSelected(pos.X, pos.Y);
         }
 
-		//Set up image
+        //Set up image
         public bool SetImage(Image img, Position pos)
         {
             sMatrix[pos.X, pos.Y].image = img;
             return true;
         }
-		//Move image from one square to another
+        //Move image from one square to another
         public bool MoveImage(Position posOld, Position posNew)
         {
             sMatrix[posNew.X, posNew.Y].image = sMatrix[posOld.X, posOld.Y].image;

@@ -31,16 +31,13 @@ namespace Chess
 			//file splite
 			public const char SPLITER='\\';
 
-            public const string PREFIX=@"..\..\images\figures";
-            
+            public const string PREFIX=@"..\..\images\";
+
+            public static  string Skin = "adventurer";
             //atack and move has differents directions
             protected bool diff;
-			public bool HasDifferentDirections {
-				get{ 
-					return diff;
-				} 
-			}
 
+           
 			//figure image
 			protected Bitmap img = null;
 			public Bitmap image { 
@@ -65,9 +62,11 @@ namespace Chess
 
 			public virtual List<Position> GetAvailableMovePossitons(Position currentPos)
 			{
-				List<Position> available = new List<Position>();
-				available.Add (currentPos );
-				return available;
+                List<Position> available = new List<Position>
+                {
+                    currentPos
+                };
+                return available;
 			}
 
             public virtual List<Position> GetAvailableAtackPositons(Position currentPos, CoreMatrix matrix)
@@ -122,41 +121,7 @@ namespace Chess
 				return false;
 			}
 
-			public virtual void ConsolePrintPosition (Position currentPos)
-			{
 
-				List<Position> available = GetAvailableMovePossitons (currentPos);
-
-				System.Console.WriteLine ( ToString() +' ' +currentPos.X + ' ' +currentPos.Y );
-
-				System.Console.Write ("\t");
-
-				for (int i=0; i<8; i++) {
-					System.Console.Write (i);
-					System.Console.Write ('\t');
-				}
-
-				System.Console.Write ('\n');
-
-				for (int i=0; i<8; i++) {
-						System.Console.Write( i );
-						System.Console.Write ('\t');
-
-					for (int j=0; j<8; j++) {
-	
-
-						if( available.Contains(new Position(j, i)) )
-						   System.Console.Write ('+');
-						else if( new Position(j, i) == currentPos )
-							System.Console.Write ('^');
-						else
-							System.Console.Write('0');
-
-						System.Console.Write ('\t');
-					}
-					System.Console.Write("\n");
-				}
-			}
 			//load image from file
 			protected virtual void LoadBitmap( string name ) {
 				System.String scolor;
@@ -165,8 +130,11 @@ namespace Chess
 					scolor = "white";
 				else 
 					scolor = "black";
-					 
-				string path =PREFIX + SPLITER 
+				if (Skin== null)
+                Skin = "adventurer";
+                                
+
+				string path =PREFIX + Skin + SPLITER 
 							+ scolor
 							+ '_'
 							+ name 
@@ -175,7 +143,7 @@ namespace Chess
                 try
                 {
                     img = new Bitmap(path);
-                }
+                                    }
                 catch (System.Exception)
                 {
                     img = null;

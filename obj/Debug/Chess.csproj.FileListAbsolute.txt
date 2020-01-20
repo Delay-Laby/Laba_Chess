@@ -11,15 +11,38 @@ C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — �
 C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess\obj\Debug\Chess.csproj.GenerateResource.cache
 C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess\obj\Debug\Chess.exe
 C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess\obj\Debug\Chess.pdb
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.csprojAssemblyReference.cache
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.Core.InfoWindow.resources
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.GUI.InviteWindow.resources
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.GUI.PlayWindow.resources
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.GUI.User.CreateProfileWindow.resources
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.GUI.User.ProfileWindow.resources
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.Properties.Resources.resources
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.csproj.GenerateResource.cache
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.exe
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\obj\Debug\Chess.pdb
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\bin\Debug\Chess.exe
-C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия\Chess-master\Chess — копия\bin\Debug\Chess.pdb
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\bin\Debug\Chess.exe.config
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\bin\Debug\Chess.exe
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\bin\Debug\Chess.pdb
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.csprojAssemblyReference.cache
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.Core.InfoWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.GUI.FigureChoiceWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.GUI.InviteWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.GUI.PlayWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.Properties.Resources.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.csproj.GenerateResource.cache
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.exe
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\sssss — копия — копия — копия (2)\Chess-master\Chess\obj\Debug\Chess.pdb
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\bin\Debug\Chess.exe.config
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\bin\Debug\Chess.exe
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\bin\Debug\Chess.pdb
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.csprojAssemblyReference.cache
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.Core.InfoWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.GUI.FigureChoiceWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.GUI.InviteWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.GUI.PlayWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.Properties.Resources.resources
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.csproj.GenerateResource.cache
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.exe
+C:\Users\Sasha\Desktop\Эл.Тех\ПиЗДА,А НЕ ШАХМАТЫ\Копия оффлайн версия\Chess-master\Chess\obj\Debug\Chess.pdb
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\bin\Debug\Chess.exe.config
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\bin\Debug\Chess.exe
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\bin\Debug\Chess.pdb
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.csprojAssemblyReference.cache
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.GUI.FigureChoiceWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.GUI.InviteWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.GUI.PlayWindow.resources
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.Properties.Resources.resources
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.csproj.GenerateResource.cache
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.exe
+C:\Users\Sasha\Desktop\Эл.Тех\1 Оффлайн версия шахмат\Chess\obj\Debug\Chess.pdb

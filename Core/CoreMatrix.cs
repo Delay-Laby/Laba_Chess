@@ -19,7 +19,7 @@ namespace Chess.Core
 		private Position KingBlack;
 
         private Figure[,] sMatrix;
-
+        
         public CoreMatrix()
         {
 			 sMatrix = new Figure[8, 8];
@@ -33,11 +33,11 @@ namespace Chess.Core
 
 
              sMatrix[4, 7] = new King(FigureColor.WHITE);
-            sMatrix[6, 7] = new Knight(FigureColor.WHITE);
-            sMatrix[1, 7] = new Knight(FigureColor.WHITE);
-            sMatrix[2, 7] = new Bishop(FigureColor.WHITE);
-            sMatrix[5, 7] = new Bishop(FigureColor.WHITE);
-            sMatrix[3, 7] = new Queen(FigureColor.WHITE);
+             sMatrix[6, 7] = new Knight(FigureColor.WHITE);
+             sMatrix[1, 7] = new Knight(FigureColor.WHITE);
+             sMatrix[2, 7] = new Bishop(FigureColor.WHITE);
+             sMatrix[5, 7] = new Bishop(FigureColor.WHITE);
+             sMatrix[3, 7] = new Queen(FigureColor.WHITE);
             for (int i = 0; i < 8; i++)
              {
                  sMatrix[i, 6] = new Pawn(FigureColor.WHITE);
@@ -60,7 +60,6 @@ namespace Chess.Core
              {
                  sMatrix[i, 1] = new Pawn(FigureColor.BLACK);
              }
-
 
 			KingBlack = new Position(4, 0);
 			KingWhite = new Position( 4, 7);

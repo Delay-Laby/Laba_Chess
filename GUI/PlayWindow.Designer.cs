@@ -36,6 +36,8 @@ namespace Chess.GUI
             this.label2 = new System.Windows.Forms.Label();
             this.Player1Time = new System.Windows.Forms.Label();
             this.Player2Time = new System.Windows.Forms.Label();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.skinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SuspendLayout();
             // 
             // gameConsole
@@ -116,6 +118,23 @@ namespace Chess.GUI
             this.Player2Time.TabIndex = 104;
             this.Player2Time.Text = "00:00";
             // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.skinsToolStripMenuItem});
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // skinsToolStripMenuItem
+            // 
+            this.skinsToolStripMenuItem.Name = "skinsToolStripMenuItem";
+            this.skinsToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.skinsToolStripMenuItem.Text = "skins";
+            // 
             // PlayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -152,8 +171,8 @@ namespace Chess.GUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Player1Time;
         private System.Windows.Forms.Label Player2Time;
-
-
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripMenuItem skinsToolStripMenuItem;
     }
 }
 

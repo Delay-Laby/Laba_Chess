@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
@@ -50,17 +54,12 @@
   <ItemGroup>
     <Compile Include="Core\CoreMatrix.cs" />
     <Compile Include="Core\WrongPositionException.cs" />
-    <Compile Include="GUI\InfoWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\InfoWindow.Designer.cs">
-      <DependentUpon>InfoWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\GameCore.cs" />
-    <Compile Include="Core\User\Profile.cs" />
-    <Compile Include="Core\User\ProfileCollection.cs" />
-    <Compile Include="Debug\Debug.cs">
+    <Compile Include="GUI\FigureChoiceWindow.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FigureChoiceWindow.Designer.cs">
+      <DependentUpon>FigureChoiceWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\GuiMatrix.cs" />
     <Compile Include="Core\IGameControl.cs" />
@@ -70,19 +69,6 @@
     <Compile Include="GUI\InviteWindow.Designer.cs">
       <DependentUpon>InviteWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\User\CreateProfileWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\User\CreateProfileWindow.Designer.cs">
-      <DependentUpon>CreateProfileWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\User\ProfileWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\User\ProfileWindow.Designer.cs">
-      <DependentUpon>ProfileWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Network\NetworkServer.cs" />
     <Compile Include="GUI\PlayWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,20 +77,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\InfoWindow.resx">
-      <DependentUpon>InfoWindow.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FigureChoiceWindow.resx">
+      <DependentUpon>FigureChoiceWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\InviteWindow.resx">
       <DependentUpon>InviteWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PlayWindow.resx">
       <DependentUpon>PlayWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\User\CreateProfileWindow.resx">
-      <DependentUpon>CreateProfileWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\User\ProfileWindow.resx">
-      <DependentUpon>ProfileWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -116,6 +96,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -133,9 +114,6 @@
     <Compile Include="Figures\Bishop.cs" />
     <Compile Include="Figures\King.cs" />
     <Compile Include="Figures\Knight.cs" />
-    <Compile Include="Network\NetworkClient.cs" />
-    <Compile Include="Network\NetworkDef.cs" />
-    <Compile Include="Network\BaseNetwork.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -147,18 +125,8 @@
   -->
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Content Include="images\figures\black_bishop.png" />
-    <Content Include="images\figures\black_king.png" />
-    <Content Include="images\figures\black_knight.png" />
-    <Content Include="images\figures\black_pawn.png" />
-    <Content Include="images\figures\black_queen.png" />
-    <Content Include="images\figures\BLACK_ROCK.PNG" />
-    <Content Include="images\figures\white_bishop.png" />
-    <Content Include="images\figures\white_king.png" />
-    <Content Include="images\figures\white_knight.png" />
-    <Content Include="images\figures\white_pawn.png" />
-    <Content Include="images\figures\white_queen.png" />
-    <Content Include="images\figures\white_rock.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
 </Project>

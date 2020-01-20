@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using Chess.GUI;
-using Chess.GUI.User;
-using Chess.Core.User;
 using Chess.Figures;
-using Chess.Network;
-using System.Threading;
+
 
 namespace Chess.Core
 {
@@ -18,10 +14,8 @@ namespace Chess.Core
         private Chess.Figures.FigureColor runColor;
         private Position figurePos;
         private PlayersState pState;
-        private bool endGameLock, strokeLock;
-        private bool networkGame;
-        private BaseNetwork network;
-        private ProfileCollection pCollection = null;
+        private bool endGameLock;
+  
         private System.Windows.Forms.Timer PlayerClock;
 
         public GameCore()
@@ -29,51 +23,21 @@ namespace Chess.Core
             Application.EnableVisualStyles();
             runColor = FigureColor.WHITE;
             pState = new PlayersState();
-            pCollection = new ProfileCollection("Users.db");
+          
         }
 
+        // Инициализания inviteWindow  
         public void Initialize()
         {
-            matrix = new CoreMatrix();
-            playWindow = new PlayWindow(this, "Chess", new GuiMatrix(matrix));
-            playWindow.FormClosed += new FormClosedEventHandler(PlayWindowClose);
 
-            PlayerClock = new System.Windows.Forms.Timer();
-            PlayerClock.Tick += new EventHandler(PlayerClock_Tick);
-            PlayerClock.Interval = 1000;
-
-            inviteWindow = new InviteWindow(pCollection);
+            inviteWindow = new InviteWindow();
             inviteWindow.OnChoice += new InviteWindow.OnChoiceEventHandler(InviteWindowMessageReceived);
             inviteWindow.Show();
+           
             Application.Run();
         }
 
-        //for console game start initialization
-        public void Initialize(string ip)
-        {
 
-            matrix = new CoreMatrix();
-            playWindow = new PlayWindow(this, "Chess", new GuiMatrix(matrix));
-            playWindow.FormClosed += new FormClosedEventHandler(PlayWindowClose);
-
-            PlayerClock = new System.Windows.Forms.Timer();
-            PlayerClock.Tick += new EventHandler(PlayerClock_Tick);
-            PlayerClock.Interval = 1000;
-
-
-            if (ip == "0.0.0.0")
-                StartServer();
-            else
-                StartClient(ip);
-
-            PlayerClock.Start();
-            playWindow.Show();
-
-            Debug.NewMessage("play window show");
-
-
-            Application.Run();
-        }
 
         public void PlayerClock_Tick(Object sender, EventArgs e)
         {
@@ -82,12 +46,7 @@ namespace Chess.Core
 
         private void ReInitialize()
         {
-            runColor = FigureColor.WHITE;
-            matrix = new CoreMatrix();
-            playWindow = new PlayWindow(this, "Chess", new GuiMatrix(matrix));
-            playWindow.FormClosed += new FormClosedEventHandler(PlayWindowClose);
-
-            inviteWindow = new InviteWindow(pCollection);
+            inviteWindow = new InviteWindow();
             inviteWindow.OnChoice += new InviteWindow.OnChoiceEventHandler(InviteWindowMessageReceived);
             inviteWindow.Show();
         }
@@ -116,12 +75,12 @@ namespace Chess.Core
                 if (solutionsCount > 0)
                 {
                     pState.SetState(kingColor, PlayerState.CHECK);
-                    Console.WriteLine("King in danger! ");
+                   
                 }
                 else
-                { //if solutions count leater than zero - is mate state
+                { 
                     pState.SetState(kingColor, PlayerState.CHECKMATE);
-                    Console.WriteLine("King have some trouble! ");
+                   
                 }
                 playWindow.matrix.SetChecked(matrix.GetKing(kingColor));
             }
@@ -129,7 +88,7 @@ namespace Chess.Core
 
         private void CheckForMate()
         {
-            Program.Debug("Checking state...");
+          
             pState.ResetGameState();
 
             CheckForMate(FigureColor.BLACK);
@@ -143,14 +102,13 @@ namespace Chess.Core
             {
                 playWindow.PrintToConsole("System: ", System.Drawing.Color.Red);
                 playWindow.PrintToConsoleLn("Player 2: check!", System.Drawing.Color.Black);
-                if (network != null && pCollection.Current != null) pCollection.Current.IncrementScore();
+               
             }
             else if (black == PlayerState.CHECKMATE)
             {
                 playWindow.PrintToConsole("System: ", System.Drawing.Color.Red);
                 playWindow.PrintToConsoleLn("Player 2: mate!", System.Drawing.Color.Black);
-                if (network != null && pCollection.Current != null && runColor == FigureColor.BLACK) pCollection.Current.GameWon(0);
-                if (network != null && pCollection.Current != null && runColor == FigureColor.WHITE) pCollection.Current.GameLost(0);
+
                 MessageBox.Show("Player 2 mate!");
             }
 
@@ -158,14 +116,13 @@ namespace Chess.Core
             {
                 playWindow.PrintToConsole("System: ", System.Drawing.Color.Red);
                 playWindow.PrintToConsoleLn("Player 2: check!", System.Drawing.Color.Black);
-                if (network != null && pCollection.Current != null) pCollection.Current.IncrementScore();
+              
             }
             else if (white == PlayerState.CHECKMATE)
             {
                 playWindow.PrintToConsole("System: ", System.Drawing.Color.Red);
                 playWindow.PrintToConsoleLn("Player 1: mate!", System.Drawing.Color.Black);
-                if (network != null && pCollection.Current != null && runColor == FigureColor.WHITE) pCollection.Current.GameWon(0);
-                if (network != null && pCollection.Current != null && runColor == FigureColor.BLACK) pCollection.Current.GameLost(0);
+               
                 MessageBox.Show("Player 1 mate!");
             }
 
@@ -174,12 +131,17 @@ namespace Chess.Core
                 EndGame();
         }
 
-        private void StartLocal()
-        {
-            playWindow.NetworkEnabled = false;
-            strokeLock = false;
+        private void Start()
+        {   
+            runColor = FigureColor.WHITE;
+            matrix = new CoreMatrix();
+            playWindow = new PlayWindow(this, "Chess", new GuiMatrix(matrix));
+            playWindow.FormClosed += new FormClosedEventHandler(PlayWindowClose);
+
+            PlayerClock = new System.Windows.Forms.Timer();
+            PlayerClock.Tick += new EventHandler(PlayerClock_Tick);
+            PlayerClock.Interval = 1000;
             endGameLock = false;
-            networkGame = false;
             PlayerClock.Start();
             playWindow.Show();
         }
@@ -188,11 +150,6 @@ namespace Chess.Core
         {
             endGameLock = true;
 
-            if (network != null)
-            {
-                network.Disconnect();
-                network = null;
-            }
         }
 
         private void MoveFigure(Position oldPos, Position newPos)
@@ -255,11 +212,13 @@ namespace Chess.Core
                     //Проверка на замену пешки другой фигурой
                     if ((runColor == FigureColor.WHITE && newPos.Y == 0) || (runColor == FigureColor.BLACK && newPos.Y == 7))
                     {
-                        if ((network.type == NetWorkType.SERVER && runColor == FigureColor.WHITE) || (network.type == NetWorkType.CLIENT && runColor == FigureColor.BLACK))
-                        {
-                           //В процессе  реализации
-                           
-                        }
+                       
+                            FigureChoiceWindow w = new FigureChoiceWindow(playWindow.GetPosOnScreen(newPos), runColor);
+                            w.ShowDialog(playWindow);
+                            matrix.SetFigure(w.Result, newPos);
+                            playWindow.matrix.SetImage(w.Result.image, newPos);
+                            playWindow.ReDraw(true);
+                       
                     }
                     else
                     {
@@ -277,7 +236,7 @@ namespace Chess.Core
             CheckForMate();
             playWindow.matrix.ResetAllAttribures();
             playWindow.Cursor = Cursors.Default;
-            playWindow.ReDraw();
+           
         }
 
         private void GetInPass(Position oldPos, Position newPos)
@@ -292,9 +251,7 @@ namespace Chess.Core
                 //neighbors figure - enemy figure
                 if (neighFigure.Color != matrix.FigureAt(newPos).Color)
                 {
-                    //last state neighbors figure is not Pawn
-                    // if k == -1 - it is left neighbors
-                    // if k == 1 - it is right neighbors
+                 
                     int neighborsIndex = (k == -1) ? 0 : 1;
 
                     if (ourPawn.NeighborsFigures[neighborsIndex] == null ||
@@ -316,68 +273,9 @@ namespace Chess.Core
             }
         }
 
-        private void RegisterNetEventHandlers()
-        {
-            network.FigureMoved += FigureMovedHandler;
-            network.MessageReceived += MessageReceivedHandler;
-            network.GameEndedEvent += GameEnded;
-            network.ConnectionEstablishedEvent += ConnectedHandler;
-            network.DisconnectedEvent += Disconnectedhandler;
-        }
-
-        private void StartServer()
-        {
-            playWindow.NetworkEnabled = true;
-            strokeLock = true;
-            endGameLock = false;
-            playWindow.Text = "Chess - Server";
-            networkGame = true;
-            
-            playWindow.Show();
-
-            try
-            {
-                network = new NetworkServer();
-                RegisterNetEventHandlers();
-
-                ((NetworkServer)network).StartServer();
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Server Error");
-                Debug.NewMessage(this.ToString() + e.Message);
-            }
-
-            Debug.NewMessage(this.ToString() + " serve initalizated...");
-        }
-
-        private void StartClient(string ip)
-        {
-            playWindow.NetworkEnabled = true;
-
-            strokeLock = false;
-            endGameLock = false;
-            networkGame = true;
-            playWindow.Text = "Chess - Client";
-            playWindow.Show();
-
-            Debug.NewMessage(this.ToString() + " connecting to server " + ip);
-            try
-            {
-                strokeLock = true;
-                network = new NetworkClient();
-                RegisterNetEventHandlers();
-                ((NetworkClient)network).ConnetcToServer(ip);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error");
-                Debug.NewMessage(this.ToString() + " " + e.Message);
-            }
-        }
-
-        #region gui delegates
+        
+ 
+       
         private void PlayWindowClose(Object o, FormClosedEventArgs e)
         {
             PlayerClock.Stop();
@@ -388,105 +286,30 @@ namespace Chess.Core
         {
             switch (e.Type)
             {
-                case OnChoiceEventArgs.ConnectionType.OFFLINE:
-                    StartLocal();
-                    break;
-                case OnChoiceEventArgs.ConnectionType.SERVER:
-                    StartServer();
-                    break;
-                case OnChoiceEventArgs.ConnectionType.CLIENT:
-                    StartClient(e.IP);
+                case OnChoiceEventArgs.GameType.OFFLINE:
+                    Start();
                     break;
 
-                case OnChoiceEventArgs.ConnectionType.EXIT:
-                    Application.Exit();
+
+               case OnChoiceEventArgs.GameType.EXIT:
+                   Application.Exit();
                     break;
             }
         }
-        #endregion
+        
 
-        #region Network base events handlers
-        public void MessageReceivedHandler(BaseNetwork.MessageReceivedEventArgs args)
-        {
-            playWindow.Invoke(new MethodInvoker(delegate
-            {
-                playWindow.PrintMessage(args.Message, (network.type == NetWorkType.SERVER) ? (PlayWindow.MessageOwner.Player1) : (PlayWindow.MessageOwner.Player2));
-            }));
-            Debug.NewMessage("Message received: " + args.Message);
-        }
-
-        public void FigureMovedHandler(BaseNetwork.MoveFigureEventArgs args)
-        {
-            playWindow.Invoke(new MethodInvoker(delegate
-            {
-                MoveFigure(args.OldPos, args.NewPos);
-                strokeLock = false;
-            }));
-
-            Console.WriteLine("Figure moved handler called");
-            Debug.NewMessage("Figure moved called by " + Thread.CurrentThread.Name);
-        }
-
-        public void GameEnded()
-        {
-            EndGame();
-        }
-
-        public void Disconnectedhandler()
-        {
-            Debug.NewMessage(this.ToString() + " " + " disconnected " + Thread.CurrentThread.Name);
-            inviteWindow.Invoke(new MethodInvoker(delegate
-            {
-                inviteWindow.Show();
-
-                playWindow.Close();
-                MessageBox.Show("Network", "Disconnected");
-
-                PlayerClock.Stop();
-            }));
-
-        }
-
-        public void ConnectedHandler()
-        {
-            Debug.NewMessage(this.ToString() + " " + " connected " + Thread.CurrentThread.Name);
-            
-            inviteWindow.Invoke(new MethodInvoker(delegate
-            {
-                //accept for move figure
-                if (network.type == NetWorkType.SERVER)
-                    strokeLock = false;
-
-                inviteWindow.Close();
-                PlayerClock.Start();
-            }));
-
-        }
-
-        #endregion
-
-        #region IGameControl implementation
-        public void FigureMoved(Position oldPos, Position newPos)
-        {
-
-        }
 
         public void SpotSelected(Position spotPos)
         {
-            if (endGameLock || strokeLock)
+            if (endGameLock)
                 return;
 
-            Program.Debug("Square selected: " + spotPos.X + ' ' + spotPos.Y);
+            
 
             //action: move figure handler
             if (playWindow.matrix.IsHighlighted(spotPos) && spotPos != figurePos)
             {
-                //send network message to client\server
-                if (networkGame)
-                {
-                    network.Add_MoveFigure(figurePos, spotPos);
-                    strokeLock = true;
-                }
+
                 MoveFigure(figurePos, spotPos);
                 return;
             }
@@ -507,7 +330,7 @@ namespace Chess.Core
 
         public bool SpotFocused(Position spotPos)
         {
-            if (endGameLock || strokeLock)
+            if (endGameLock )
                 return false;
 
             if ((matrix.HasFigureAt(spotPos) && matrix.FigureAt(spotPos).Color == runColor)
@@ -517,11 +340,8 @@ namespace Chess.Core
                 return false;
         }
 
-        public void MessageReceived(String message)
-        {
-            network.Add_Message(message);
-        }
 
-        #endregion
+
+        
     }
 }

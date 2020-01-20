@@ -77,11 +77,6 @@ namespace Chess
 				return (X == ((Position)obj).X) && (Y == ((Position)obj).Y);
 			}
 
-			public override int GetHashCode ()
-			{
-				return 0;
-			}
-
 		}
 	
 		public enum PlayerState

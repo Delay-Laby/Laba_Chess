@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using Chess.Figures;
 using Chess.Core;
+using System.IO;
 
 namespace Chess.GUI
 {
@@ -16,11 +12,10 @@ namespace Chess.GUI
     {
         private const int sqSize = 80;   // размер квадрата
         private const int offset = 25;   // отступ от края формы
-        //Field 
+       
         public GuiMatrix matrix = null;
         public readonly Color ColorSelected = Color.PaleGoldenrod;
-
-
+       
         public enum MessageOwner
         {
             Player1,
@@ -38,18 +33,6 @@ namespace Chess.GUI
         private int p1Time = 0, p2Time = 0;
 
 
-        public bool NetworkEnabled  {
-            set  {
-                if (value == true) {
-                    commandLine.Visible = true;
-                    sendButton.Visible = true;
-                }
-                else  {
-                    commandLine.Visible = false;
-                    sendButton.Visible = false;
-                }
-            }
-        }
 
         public delegate void DrawAsyncDelegate(object sender, EventArgs e);
 
@@ -60,7 +43,6 @@ namespace Chess.GUI
 			matrix = guiMatrix;
 			control = gameControl;
 		}
-          
 
         //draw chess field
         private void Draw(object sender, EventArgs e)
@@ -86,7 +68,7 @@ namespace Chess.GUI
                     //Выбор цвета квадрата
                     if (tmpSpot.Check)
                     {
-                        if (tmpSpot.sColor != Color.White) pen.Color = Color.FromArgb(255, 100, 100);
+                        if (tmpSpot.sColor != Color.White) pen.Color = Color.FromArgb(255, 1, 1);
                         else pen.Color = Color.FromArgb(255, 150, 150);
                     }
                     else if (tmpSpot.Highlighted)	//highlighted spot
@@ -145,12 +127,7 @@ namespace Chess.GUI
         {
             graph.Graphics.DrawImage(img, p.X * sqSize + offset, p.Y * sqSize);
         }
-        // Sync drawing
-        public void ReDraw()
-        {
-            Draw(null, null);
-        }
-        // Manual sync/async drawing
+ 
         public void ReDraw(bool async)
         {
             if (async)
@@ -174,7 +151,7 @@ namespace Chess.GUI
             graphContext.MaximumBuffer = new System.Drawing.Size(sqSize * 8 + offset + 1, sqSize * 8 + offset + 1);
             graph = graphContext.Allocate(this.CreateGraphics(), new Rectangle(0, 0, sqSize * 8 + offset + 1, sqSize * 8 + offset + 1));
 
-            pen = new System.Drawing.Pen(Color.CadetBlue);
+            pen = new System.Drawing.Pen(Color.Black);
 
             mouseTracker = new System.Windows.Forms.Timer();
             mouseTracker.Interval = 40;
@@ -234,31 +211,9 @@ namespace Chess.GUI
         }
 
 
-
-        public void PrintMessage(string str, MessageOwner owner)
-        {
-            switch (owner)
-            {
-                case MessageOwner.Player1:
-                    PrintToConsole("Player1: ", Color.Green);
-                    PrintToConsoleLn(str, Color.FromArgb(64, 128, 255));
-                    break;
-
-                case MessageOwner.Player2:
-                    PrintToConsole("Player2: ", Color.Green);
-                    PrintToConsoleLn(str, Color.FromArgb(128, 64, 255));
-                    break;
-
-                case MessageOwner.System:
-                    PrintToConsole("System: ", Color.Red);
-                    PrintToConsoleLn(str, Color.Black);
-                    break;
-            }
-        }
-
         //Mouse down event handler
         private void PlayWindow_Click(object sender, MouseEventArgs e)
-        {
+        {   
             Point pt = PointToClient(Cursor.Position);
 
             pt.X -= offset;
@@ -269,7 +224,7 @@ namespace Chess.GUI
                 return;
 
             Position mouseClickedPos = new Position(pt.X, pt.Y);
-
+           
             if (control.SpotFocused(mouseClickedPos))
             {
                 //invoke interface method
@@ -305,7 +260,7 @@ namespace Chess.GUI
             PrintToConsole("Player1: ", Color.Green);
             PrintToConsoleLn(commandLine.Text, Color.FromArgb(64, 128, 255));
             commandLine.Text = "";
-            control.MessageReceived(commandLine.Text);
+          
         }
 
         private void commandLine_KeyDown(object sender, KeyEventArgs e)
@@ -315,6 +270,8 @@ namespace Chess.GUI
                 sendButton_Click(sender, e);
             }
         }
+        // Указывать папку со скинами, а затем перезапустить игру 
+
         public Point GetPosOnScreen(Position pt)
         {
             Point wpt = PointToScreen(new Point(pt.X*sqSize + sqSize / 2 + offset, pt.Y*sqSize + sqSize / 2));

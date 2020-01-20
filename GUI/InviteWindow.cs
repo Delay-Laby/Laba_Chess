@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
-using Chess.Core.User;
+using System.IO;
+using Chess.Figures;
+using Chess.Core;
+
 
 namespace Chess.GUI
 {
@@ -17,42 +13,21 @@ namespace Chess.GUI
         public event OnChoiceEventHandler OnChoice;
         private bool choiceMade = false;
         private delegate void LoadingDelegate(int delay);
-        private LoadingDelegate loading;
-        private ProfileCollection pCollection = null;
-
-        public InviteWindow(ProfileCollection profileCollection)
+      
+       
+        public InviteWindow()
         {
-            pCollection = profileCollection;
+         
             InitializeComponent();
-            label1.Visible = false;
-            IPBox.Visible = false;
-            ConnectButton.Visible = false;
-            CancelButton.Visible = false;
-            StartServerButton.Visible = false;
-            StartClientButton.Visible = false;
-            loading = new LoadingDelegate(Loading);
-        }
-        void Loading(int delay)
-        {
-            while (choiceMade)
-            {
-                status.Text = "Connecting";
-                Thread.Sleep(delay);
-                status.Text = "Connecting.";
-                Thread.Sleep(delay);
-                status.Text = "Connecting..";
-                Thread.Sleep(delay);
-                status.Text = "Connecting...";
-                Thread.Sleep(delay);
-            }
-            status.Text = "Cancelled";
+           
         }
 
         private void OfflineGameButton_Click(object sender, EventArgs e)
         {
+           
             if (OnChoice != null)
             {
-                OnChoice(this, new OnChoiceEventArgs(OnChoiceEventArgs.ConnectionType.OFFLINE, null));
+                OnChoice(this, new OnChoiceEventArgs(OnChoiceEventArgs.GameType.OFFLINE));
                 choiceMade = true;
             }
             Close();
@@ -60,110 +35,41 @@ namespace Chess.GUI
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            if (OnChoice != null)
-            {
-                OnChoice(this, new OnChoiceEventArgs(OnChoiceEventArgs.ConnectionType.EXIT, null));
-                choiceMade = true;
-            }
+
             Close();
-        }
-
-        private void ConnectButton_Click(object sender, EventArgs e)
-        {
-            if (OnChoice != null)
-            {
-                OnChoice(this, new OnChoiceEventArgs(OnChoiceEventArgs.ConnectionType.CLIENT, IPBox.Text));
-                choiceMade = true;
-            }
-            loading.BeginInvoke(500, null, null);
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            label1.Visible = false;
-            IPBox.Visible = false;
-            ConnectButton.Visible = false;
-            CancelButton.Visible = false;
-            StartServerButton.Visible = false;
-            StartClientButton.Visible = false;
-
-            OfflineGameButton.Visible = true;
-            OnlineGameButton.Visible = true;
-            ExitButton.Visible = true;
-            choiceMade = false;
-        }
-
-        private void StartServerButton_Click(object sender, EventArgs e)
-        {
-            StartClientButton.Visible = false;
-            if (OnChoice != null)
-            {
-                OnChoice(this, new OnChoiceEventArgs(OnChoiceEventArgs.ConnectionType.SERVER, null)); 
-                choiceMade = true;
-            }
-            loading.BeginInvoke(500, null, null);
-        }
-
-        private void StartClientButton_Click(object sender, EventArgs e)
-        {
-            StartServerButton.Visible = false;
-            StartClientButton.Visible = false;
-
-            label1.Visible = true;
-            IPBox.Visible = true;
-            ConnectButton.Visible = true;
-            CancelButton.Visible = true;
-        }
-
-        private void OnlineGameButton_Click(object sender, EventArgs e)
-        {
-            OfflineGameButton.Visible = false;
-            OnlineGameButton.Visible = false;
-            ExitButton.Visible = false;
-
-            StartServerButton.Visible = true;
-            StartClientButton.Visible = true;
-            CancelButton.Visible = true;
         }
 
         private void InviteWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!choiceMade && OnChoice != null)
-                OnChoice(this, new OnChoiceEventArgs(OnChoiceEventArgs.ConnectionType.EXIT, null));
+                OnChoice(this, new OnChoiceEventArgs(OnChoiceEventArgs.GameType.EXIT));
             choiceMade = false;
+            
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        private void Skin_Click(object sender, EventArgs e)
         {
-            if (LoginButton.Text == "Login" && pCollection != null)
+            if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
-                User.ProfileWindow pw = new User.ProfileWindow(pCollection);
-                pw.ShowDialog();
-                if (pw.rv != null)
-                {
-                    LoginButton.Text = "Logout";
-                    this.Text = "Chess: " + pw.rv.NickName;
-                }
-            }
-            else
-            {
-                this.Text = "Chess";
-                LoginButton.Text = "Login";
+                string path = folderBrowser.SelectedPath;
+                string folder = new DirectoryInfo(path).Name;
+
+                Figure.Skin = folder;
+
             }
         }
     }
 
+
     public class OnChoiceEventArgs: EventArgs
     {
-        public enum ConnectionType { SERVER, CLIENT, OFFLINE, EXIT };
-        private ConnectionType type;
-        public ConnectionType Type { get { return type; } }
-        private string ip = null;
-        public string IP { get { return ip; } }
-        public OnChoiceEventArgs(ConnectionType connectionType, string InternetProtocol)
+        public enum GameType { OFFLINE, EXIT };
+        private GameType gtype;
+        public GameType Type { get { return gtype; } }
+                public OnChoiceEventArgs(GameType connectionType)
         {
-            ip = InternetProtocol;
-            type = connectionType;
+            
+            gtype = connectionType;
         }
     }
 }
